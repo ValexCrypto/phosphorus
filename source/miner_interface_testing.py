@@ -14,9 +14,21 @@ order_book = [[True, 10000000, 0, 1000000000000000000],
             [True, 1000000, 0, 1000000000000000050],
             [True, 1000000, 0, 900000000000000000],
             [False, 100000, 0, 1000000000000000045],
-            [False, 1000000, 0, 909000000000000000]]
+            [False, 1000000, 0, 909000000000000000],
+            [True, 10000000, 0, 1000000000000000000],
+            [False, 100000, 0, 1000000000000000000],
+            [False, 10000000, 0, 1000000000000000050],
+            [True, 100000, 0, 900000000000000000],
+            [True, 100000, 0, 1000000000000000045],
+            [False, 10000000, 0, 909000000000000000]]
 
 address_book = [["0x1234", "0x3211", "0x134389"],
+                ["0x1254334", "0x33141", "0x1342389"],
+                ["0x123434", "0x32341", "0x134289"],
+                ["0x12324", "0x321491", "0x13423489"],
+                ["0x12364", "0x390141", "0x1242389"],
+                ["0x14234", "0x35141", "0x1345389"],
+                ["0x1234", "0x3211", "0x134389"],
                 ["0x1254334", "0x33141", "0x1342389"],
                 ["0x123434", "0x32341", "0x134289"],
                 ["0x12324", "0x321491", "0x13423489"],
@@ -34,13 +46,16 @@ def getAddressEntry(order_number):
 
 def giveMatch(deposit_address, trading_pair, buy_index, sell_index, nonce):
     global order_book
+    print("give match called with " + str(deposit_address) + ", " + str(trading_pair) + ", " + str(buy_index) + ", " + str(sell_index) + ", " + str(nonce))
     if(buy_index == sell_index):
         print("Buy and sell index the same")
         return
-    if(buy_index < 0 or 6 < buy_index):
+    if(buy_index < 0 or len(order_book) < buy_index):
         print("Buy index out of bounds")
+        while(1):
+            continue
         return
-    if(sell_index < 0 or 6 < sell_index):
+    if(sell_index < 0 or len(order_book) < sell_index):
         print("Buy index out of bounds")
         return
     if(not order_book[buy_index][0]):
