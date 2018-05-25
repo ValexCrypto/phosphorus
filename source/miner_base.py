@@ -4,7 +4,7 @@ from miner_interface_testing import giveMatch
 from test_hash import minerHash
 
 STANDARD_TRADING_PAIR = 1
-DIFFICULTY = 2 ** 254
+DIFFICULTY = 2 ** 29
 MAX_NONCE = 100000000
 DEPOSIT_ADDRESS = 42
 
@@ -19,7 +19,6 @@ ORD_LIMIT = 3
 def findNonce(addr, pair, buyInd, sellInd):
     for i in range(MAX_NONCE):
         if(minerHash(addr, pair, buyInd, sellInd, i) < DIFFICULTY):
-            print("nonce found, " + str(i) + ", difficulty: " + str(DIFFICULTY))
             return i
 
 
