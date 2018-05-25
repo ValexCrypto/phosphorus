@@ -32,6 +32,8 @@ def runMiner():
     quantity = 0
     for i in range(len(orderBook)):
         order = orderBook[i]
+        if(order[ORD_VOL] == 0):
+            continue
         if(order[ORD_TYPE]): #if true type is a buy
             if((highestBuy == 0) or (order[ORD_LIMIT] > highestBuy)):
                 if(lowestSell == 0):
